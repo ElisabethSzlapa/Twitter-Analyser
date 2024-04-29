@@ -2,8 +2,9 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 const TweetCard = ({ tweet }) => {
-    const { fullText, likeCount, replyCount, retweetCount, tweetBy } = tweet;
+    const { fullText, likeCount, replyCount, retweetCount, tweetBy, id } = tweet;
 
+    const twitterUrl = `https://twitter.com/${tweetBy.userName}/status/${id}`;
     return (
         <Card style={{ width: '18rem', margin: '10px' }}>
             <Card.Body>
@@ -13,13 +14,14 @@ const TweetCard = ({ tweet }) => {
                 <Card.Text>Likes: {likeCount}</Card.Text>
                 <Card.Text>Replies: {replyCount}</Card.Text>
                 <Card.Text>Retweets: {retweetCount}</Card.Text>
-                <Button variant="primary">View Tweet</Button>
-            </Card.Body>
+                <a href={twitterUrl} target="_blank" rel="noopener noreferrer">
+                    View Tweet
+                </a> </Card.Body>
         </Card>
     );
 };
 
-const TweetsDisplay = ({ tweets }) => {
+const TweetsDisplay = ({tweets}) => {
     if (!tweets.list) return(
         <div>
             Enter a user to see tweets...
