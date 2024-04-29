@@ -5,14 +5,14 @@ import Form from 'react-bootstrap/Form';
 // Outline of how it works
 // https://react-bootstrap.netlify.app/docs/forms/overview/?
 
-const UserSearch = () => {
-    const [user, setUser] = react.useState("");
+const UserSearch = ({setUser, onSubmit}) => {
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(user);
+        onSubmit();
     }
 
     function onUserInput(e) {
+        console.log(e.target.value);
         setUser(e.target.value);
     }
 
@@ -25,7 +25,6 @@ const UserSearch = () => {
                     <Form.Control
                         type="text"
                         placeholder="Search..."
-                        value={user}
                         onChange={onUserInput}
                     />
                     <Button variant="primary" type="submit">Search</Button>
