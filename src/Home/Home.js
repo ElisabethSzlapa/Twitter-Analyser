@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import UserSearch from "../UserSearch/UserSearch";
+import TweetsDisplay from '../TweetsDisplay/TweetsDisplay';
 import react from "react";
 
 axios.defaults.baseURL = 'http://localhost:3001';
@@ -16,7 +17,7 @@ const Home = () => {
             axios.get(`/api/tweets?user=${user}`)
                 .then(response => {
                     setTweets(response.data);
-                    console.log(tweets);
+                    console.log(response.data);
                 })
                 .catch(error => console.log(error));
         }
@@ -25,6 +26,7 @@ const Home = () => {
     return(
         <div>
             <UserSearch setUser={setUser} onSubmit={handleSubmit}/>
+            <TweetsDisplay tweets={tweets}/>
         </div>
     )
 }
