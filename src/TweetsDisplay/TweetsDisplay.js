@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import {map} from "react-bootstrap/ElementChildren";
 
 const TweetCard = ({ tweet }) => {
-    const { fullText, likeCount, replyCount, retweetCount, tweetBy, id } = tweet;
+    const { fullText, likeCount, replyCount, retweetCount, tweetBy, id, media } = tweet;
 
     const twitterUrl = `https://twitter.com/${tweetBy.userName}/status/${id}`;
     return (
@@ -12,6 +13,13 @@ const TweetCard = ({ tweet }) => {
                 <Card.Subtitle className="mb-2 text-muted">@{tweetBy.userName}</Card.Subtitle>
                 <Card.Text>{fullText}</Card.Text>
                 <Card.Text>Likes: {likeCount}</Card.Text>
+                {media && media.map(entry => (
+                    <Card.Img
+                        key={entry.id}
+                        src={entry.url}
+                        style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                    />
+                ))}
                 <Card.Text>Replies: {replyCount}</Card.Text>
                 <Card.Text>Retweets: {retweetCount}</Card.Text>
                 <a href={twitterUrl} target="_blank" rel="noopener noreferrer">
