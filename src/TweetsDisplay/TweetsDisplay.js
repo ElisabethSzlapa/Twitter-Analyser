@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const TweetCard = ({ tweet }) => {
     const { fullText, likeCount, replyCount, retweetCount, tweetBy, id } = tweet;
@@ -27,7 +27,6 @@ const TweetsDisplay = ({tweets}) => {
             Enter a user to see tweets...
         </div>
     );
-    console.log(tweets);
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {tweets.list.map(tweet => (
