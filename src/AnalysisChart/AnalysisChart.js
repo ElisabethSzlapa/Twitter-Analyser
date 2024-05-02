@@ -1,19 +1,23 @@
 import React from 'react';
+import {Card} from "react-bootstrap";
 
-const AnalysisChart = ( {tweets} ) => {
-    if (!tweets.list) return;
+const AnalysisChart = ( {analysedTweets} ) => {
+    if (analysedTweets.length === 0) return;
+    console.log(analysedTweets);
     // For now, let's say that the relevant information of a tweet as pertaining to its category is:
     // username
-    // image
-    // tweet contents
-    const mappedTweets = tweets.list.map(tweet => ({
-        fullName: tweet.tweetBy.fullName,
-        tweetImage: tweet.media, // an array of objects with 'url' and 'type' (e.g. type = photo, url = https://pbs.twimg.com/media/...)
-        fullText: tweet.fullText
-    }));
+    // image (tbd)
     return(
       <div>
-
+          {analysedTweets.map(tweet => {
+              return(
+              <Card style={{ width: '18rem', margin: '10px' }}>
+                  <Card.Body>
+                      <Card.Text>{tweet.category.message.content}</Card.Text>
+                  </Card.Body>
+              </Card>
+              );
+          })}
       </div>
     );
 }
