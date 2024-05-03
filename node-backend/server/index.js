@@ -25,9 +25,10 @@ app.get('/api/tweets', async (req, res) => {
     }
     catch (error){
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Error fetching tweets' });
     }
 });
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
