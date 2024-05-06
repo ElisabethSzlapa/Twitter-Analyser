@@ -46,6 +46,24 @@ app.get('/api/analyse', async (req, res) => {
     }
 });
 
+app.get('/api/tweets', async (req, res) => {
+    const {user, count} = req.query;
+
+    try {
+        console.log(`fetch ${count} tweets from ${user} `);
+        const tweets = await rettiwtInstance.tweet.search({
+            fromUsers: [user],
+        }, parseInt(count));
+        console.log("User:", user);
+        console.log(tweets);
+        res.json(tweets);
+    }
+    catch (error){
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching tweets' });
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
